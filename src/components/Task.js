@@ -14,8 +14,10 @@ const Task = ({ id, title, isComplete, onClickCallback, onDeleteCallback }) => {
       >
         {title}
       </button>
-
-      <button className="tasks__item__remove button" onClick={() => onDeleteCallback(id)}>x</button>
+      <button 
+      className="tasks__item__remove button" 
+      data-testid={`delete button ${id}`}
+      onClick={() => onDeleteCallback(id)}>x</button>
     </li>
   );
 };
