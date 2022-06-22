@@ -2,6 +2,7 @@ import React from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
 import { useState } from 'react';
+import axios from 'axios';
 
 const TASKS = [
   {
@@ -27,16 +28,20 @@ const App = () => {
         task.isComplete = !task.isComplete;
       }
     }
-    // const tasksCopy = tasks.map((task) => {
-    //   console.log('id', id);
-    //   console.log('task id', task.id);
-    //   if (task.id === id) {
-    //     return !task.isComplete;
-    //   } else {
-    //     return task;
-    // //   }
-    // });
     setTasks(tasksCopy);
+  };
+
+  const deleteTask = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+    // axios.delete(`https://task-list-api-c17.herokuapp.com/tasks/${id}`)
+    // .then((response) => {
+    //   const newTasks = tasks.filter((task) => task.id !== id);
+    //   setTasks(newTasks);
+    // })
+    // .catch((error) => {
+    //   console.log('Unable to delete the task');
+    // });
   };
 
   return (
@@ -46,7 +51,10 @@ const App = () => {
       </header>
       <main>
         <div>
-          {<TaskList tasks={TASKS} completeTaskCallback={completeTask} />}
+          {<TaskList 
+          tasks={tasks} 
+          onClickCallback={completeTask} 
+          onDeleteCallback={deleteTask}/>}
         </div>
       </main>
     </div>
