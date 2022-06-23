@@ -52,7 +52,7 @@ describe('Task', () => {
       <Task
         id={1}
         title={'Test Title'}
-        isComplete={true}
+        is_complete={true}
         onClickCallback={() => {}}
         onDeleteCallback={() => {}}
       />

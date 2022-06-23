@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 
 import './Task.css';
 
-const Task = ({ id, title, isComplete, onClickCallback, onDeleteCallback }) => {
-  const buttonClass = isComplete ? 'tasks__item__toggle--completed' : '';
+const Task = ({
+  id,
+  title,
+  // eslint-disable-next-line camelcase
+  is_complete,
+  onClickCallback,
+  onDeleteCallback,
+}) => {
+  // eslint-disable-next-line camelcase
+  const buttonClass = is_complete ? 'tasks__item__toggle--completed' : '';
 
   return (
     <li className="tasks__item">
@@ -14,10 +22,13 @@ const Task = ({ id, title, isComplete, onClickCallback, onDeleteCallback }) => {
       >
         {title}
       </button>
-      <button 
-      className="tasks__item__remove button" 
-      data-testid={`delete button ${id}`}
-      onClick={() => onDeleteCallback(id)}>x</button>
+      <button
+        className="tasks__item__remove button"
+        data-testid={`delete button ${id}`}
+        onClick={() => onDeleteCallback(id)}
+      >
+        x
+      </button>
     </li>
   );
 };
@@ -25,7 +36,8 @@ const Task = ({ id, title, isComplete, onClickCallback, onDeleteCallback }) => {
 Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
+  // eslint-disable-next-line camelcase
+  is_complete: PropTypes.bool.isRequired,
   onClickCallback: PropTypes.func.isRequired,
   onDeleteCallback: PropTypes.func.isRequired,
 };

@@ -11,7 +11,7 @@ const TaskList = ({ tasks, onClickCallback, onDeleteCallback }) => {
           key={task.id}
           id={task.id}
           title={task.title}
-          isComplete={task.isComplete}
+          is_complete={task.is_complete}
           onClickCallback={onClickCallback}
           onDeleteCallback={onDeleteCallback}
         />
@@ -21,13 +21,13 @@ const TaskList = ({ tasks, onClickCallback, onDeleteCallback }) => {
   return <ul className="tasks__list no-bullet">{getTaskListJSX(tasks)}</ul>;
 };
 
-
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      isComplete: PropTypes.bool.isRequired,
+      // eslint-disable-next-line camelcase
+      is_complete: PropTypes.bool.isRequired,
     })
   ).isRequired,
   onClickCallback: PropTypes.func.isRequired,
