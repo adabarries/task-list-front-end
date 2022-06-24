@@ -3,11 +3,17 @@ import TaskList from './components/TaskList.js';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import NewTaskForm from './components/NewTaskForm.js';
+
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
+    getTasksFromAPI();
+  }, []);
+
+  const getTasksFromAPI = () => {
     axios
       .get('https://task-list-api-c17.herokuapp.com/tasks')
       .then((response) => {
@@ -16,7 +22,7 @@ const App = () => {
       .catch((error) => {
         console.log('Something went wrong', error);
       });
-  });
+  };
 
   const completeTask = (id) => {
     const tasksCopy = [...tasks];
@@ -60,6 +66,16 @@ const App = () => {
       });
   };
 
+  const makeNewTask = (data) => {
+    axios.post('https://task-list-api-c17.herokuapp.com/tasks', data)
+      .then((response) => {
+        getTasksFromAPI();
+      })
+      .catch((error) => {
+        console.log('Error in makeNewTask.', error);
+      });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -67,6 +83,7 @@ const App = () => {
       </header>
       <main>
         <div>
+          <NewTaskForm handleSubmission={makeNewTask} />
           {
             <TaskList
               tasks={tasks}
