@@ -27,13 +27,13 @@ const NewTaskForm = (props) => {
         <form onSubmit={handleFormSubmission}>
             <label htmlFor='title'>Title:</label>
             <input 
-            name='name' 
+            name='title' 
             type='text' 
             value={taskData.title} 
             onChange={handleFormInput}/>
             <label htmlFor='description'>Description:</label>
             <input 
-            name='name' 
+            name='description' 
             type='text' 
             value={taskData.description} 
             onChange={handleFormInput}/>
